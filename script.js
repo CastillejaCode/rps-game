@@ -1,7 +1,6 @@
 "use strict";
 
 //Create Computer Choice
-//Rock = 0, Paper= 1, Scissors = 2
 const computerChoice = function () {
 	const random = Math.floor(Math.random() * 3);
 	if (random === 0) return "rock";
@@ -9,8 +8,7 @@ const computerChoice = function () {
 	else return "scissors";
 };
 
-//Retreive User Choice
-
+//Play one round and return phrase
 const playRound = function (comp, user) {
 	if (comp === user) return "It's a Tie!";
 	if (
@@ -24,30 +22,31 @@ const playRound = function (comp, user) {
 	}
 };
 
-//Best 3 out of 5
-//Loop Over 5 times
-//Add team variable
-//If reach 3, then end and win
+//Outside variables to allow keping score
 let comp = 0;
 let user = 0;
 
 const game = function () {
 	for (let i = 0; i < 5; i++) {
+		//Variables to be iterated each time
 		let compChoice = computerChoice();
 		let userChoice = prompt(
 			"Please enter rock, paper, or scissors please"
 		).toLowerCase();
 
+		//Check result of round and tally up
 		if (playRound(compChoice, userChoice).includes("lost!")) {
 			comp++;
-			console.log(`Comp is ${comp}`);
+			console.log(`Comp has ${comp} points`);
 		} else if (playRound(compChoice, userChoice).includes("won!")) {
 			user++;
-			console.log(`User is ${user}`);
-		}
+			console.log(`User has ${user} points`);
+		} else console.log(`Tie!`);
+
+		//Results Comparison
 		if (i === 4) {
 			if (comp > user) {
-				console.log("You are the Loser!");
+				console.log("You Lost!");
 			} else if (user > comp) {
 				console.log("You are Goated in the Sauce!");
 			} else {
