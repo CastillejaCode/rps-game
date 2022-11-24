@@ -2,23 +2,16 @@
 
 //Create Computer Choice
 //Rock = 0, Paper= 1, Scissors = 2
-const computerChoice = function () {
+let computerChoice = function () {
 	const random = Math.floor(Math.random() * 3);
 	if (random === 0) return "rock";
 	else if (random === 1) return "paper";
 	else return "scissors";
 };
 
-const compChoice = computerChoice();
-console.log(compChoice);
 //Retreive User Choice
 
-// const userChoice = prompt(
-// 	"Please enter rock, paper, or scissors please"
-// ).toLowerCase();
-// console.log(userChoice);
-
-const playRound = function (comp, user) {
+let playRound = function (comp, user) {
 	if (comp === user) return "It's a Tie!";
 	if (
 		(comp === "rock" && user === "scissors") ||
@@ -40,9 +33,13 @@ let user = 0;
 
 const game = function () {
 	for (let i = 0; i < 5; i++) {
-		playRound(
-			compChoice,
-			prompt("Please enter rock, paper, or scissors please").toLowerCase()
+		let compChoice1 = computerChoice();
+
+		console.log(
+			playRound(
+				compChoice1,
+				prompt("Please enter rock, paper, or scissors please").toLowerCase()
+			)
 		);
 	}
 };
