@@ -9,23 +9,24 @@ const computerChoice = function () {
 };
 
 //Play one round and return phrase
-const playRound = function (comp, user) {
-	if (comp === user) return "It's a Tie!";
+const playRound = function (compScore, userScore) {
+	if (compScore === userScore) return "It's a Tie!";
 	if (
-		(comp === "rock" && user === "scissors") ||
-		(comp === "scissors" && user === "paper") ||
-		(comp === "paper" && user === "rock")
+		(compScore === "rock" && userScore === "scissors") ||
+		(compScore === "scissors" && userScore === "paper") ||
+		(compScore === "paper" && userScore === "rock")
 	)
-		return "You lost!";
+		return 0;
 	else {
-		return "You won!";
+		return 1;
 	}
 };
 
 //Outside variables to allow keping score
-let comp = 0;
-let user = 0;
+let compScore = 0;
+let userScore = 0;
 
+//playRound out of
 const game = function () {
 	for (let i = 0; i < 5; i++) {
 		//Variables to be iterated each time
@@ -33,24 +34,32 @@ const game = function () {
 		let userChoice = prompt(
 			"Please enter rock, paper, or scissors please"
 		).toLowerCase();
+		//Refactor
+		let play = playRound(compChoice, userChoice);
 
 		//Check result of round and tally up
-		if (playRound(compChoice, userChoice).includes("lost!")) {
-			comp++;
-			console.log(`Comp has ${comp} points`);
-		} else if (playRound(compChoice, userChoice).includes("won!")) {
-			user++;
-			console.log(`User has ${user} points`);
+		if (play === 0) {
+			compScore++;
+			console.log(`You lost! Comp has ${compScore} points`);
+		} else if (play === 1) {
+			userScore++;
+			console.log(`You won! User has ${userScore} points`);
 		} else console.log(`Tie!`);
 
 		//Results Comparison
 		if (i === 4) {
-			if (comp > user) {
-				console.log("You Lost!");
-			} else if (user > comp) {
-				console.log("You are Goated in the Sauce!");
+			if (compScore > userScore) {
+				console.log(`You Lost! 
+Comp: ${compScore}
+You: ${userScore}`);
+			} else if (userScore > compScore) {
+				console.log(`You are Goated in the Sauce!
+Comp: ${compScore}
+You: ${userScore}`);
 			} else {
-				console.log(`It's a tie!`);
+				console.log(`It's a tie!
+Comp: ${compScore}
+You: ${userScore}`);
 			}
 		}
 	}
