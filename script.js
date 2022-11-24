@@ -13,10 +13,10 @@ const compChoice = computerChoice();
 console.log(compChoice);
 //Retreive User Choice
 
-const userChoice = prompt(
-	"Please enter rock, paper, or scissors please"
-).toLowerCase();
-console.log(userChoice);
+// const userChoice = prompt(
+// 	"Please enter rock, paper, or scissors please"
+// ).toLowerCase();
+// console.log(userChoice);
 
 const playRound = function (comp, user) {
 	if (comp === user) return "It's a Tie!";
@@ -31,8 +31,6 @@ const playRound = function (comp, user) {
 	}
 };
 
-const play = playRound(compChoice, userChoice);
-
 //Best 3 out of 5
 //Loop Over 5 times
 //Add team variable
@@ -40,19 +38,13 @@ const play = playRound(compChoice, userChoice);
 let comp = 0;
 let user = 0;
 
-const game = () => {
+const game = function () {
 	for (let i = 0; i < 5; i++) {
-		if (comp >= 3) {
-			return "You suck, the computer won!";
-		}
-		if (user >= 3) {
-			return "You are GOATED in the SAUCE!";
-		}
-
-		if (play.includes("lost!")) {
-			comp++;
-		} else if (play.includes("won!")) {
-			user++;
-		}
+		playRound(
+			compChoice,
+			prompt("Please enter rock, paper, or scissors please").toLowerCase()
+		);
 	}
 };
+
+game();
