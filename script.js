@@ -2,7 +2,7 @@
 
 //Create Computer Choice
 //Rock = 0, Paper= 1, Scissors = 2
-let computerChoice = function () {
+const computerChoice = function () {
 	const random = Math.floor(Math.random() * 3);
 	if (random === 0) return "rock";
 	else if (random === 1) return "paper";
@@ -11,7 +11,7 @@ let computerChoice = function () {
 
 //Retreive User Choice
 
-let playRound = function (comp, user) {
+const playRound = function (comp, user) {
 	if (comp === user) return "It's a Tie!";
 	if (
 		(comp === "rock" && user === "scissors") ||
@@ -33,14 +33,27 @@ let user = 0;
 
 const game = function () {
 	for (let i = 0; i < 5; i++) {
-		let compChoice1 = computerChoice();
+		let compChoice = computerChoice();
+		let userChoice = prompt(
+			"Please enter rock, paper, or scissors please"
+		).toLowerCase();
 
-		console.log(
-			playRound(
-				compChoice1,
-				prompt("Please enter rock, paper, or scissors please").toLowerCase()
-			)
-		);
+		if (playRound(compChoice, userChoice).includes("lost!")) {
+			comp++;
+			console.log(`Comp is ${comp}`);
+		} else if (playRound(compChoice, userChoice).includes("won!")) {
+			user++;
+			console.log(`User is ${user}`);
+		}
+		if (i === 4) {
+			if (comp > user) {
+				console.log("You are the Loser!");
+			} else if (user > comp) {
+				console.log("You are Goated in the Sauce!");
+			} else {
+				console.log(`It's a tie!`);
+			}
+		}
 	}
 };
 
