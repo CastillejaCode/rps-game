@@ -1,44 +1,48 @@
 "use strict";
 
 //DOM constants
-const rock = document.querySelector(".rock");
+const rock = document.querySelector(".🪨");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
 const buttons = document.querySelectorAll(".button");
-
-//Event Listeners for Buttons
-
-buttons.forEach((btn) =>
-	btn.addEventListener("click", function (e) {
-		console.log(e.target.textContent);
-	})
-);
+const results = document.querySelector(".results");
 
 //Create Computer Choice
 const computerChoice = function () {
 	const random = Math.floor(Math.random() * 3);
-	if (random === 0) return "rock";
-	else if (random === 1) return "paper";
-	else return "scissors";
+	console.log(random);
+	if (random === 0) return "🪨";
+	else if (random === 1) return "📃";
+	else return "✂️";
 };
 
 //Play one round and return phrase
-const playRound = function (compScore, userScore) {
-	if (compScore === userScore) return "It's a Tie!";
+const playRound = function (user, comp) {
+	if (user === comp) return null;
 	if (
-		(compScore === "rock" && userScore === "scissors") ||
-		(compScore === "scissors" && userScore === "paper") ||
-		(compScore === "paper" && userScore === "rock")
+		(user === "🪨" && comp === "✂️") ||
+		(user === "✂️" && comp === "📃") ||
+		(user === "📃" && comp === "🪨")
 	)
-		return 0;
-	else {
-		return 1;
-	}
+		return true;
+	else false;
 };
 
+//Event Listeners for Buttons
+buttons.forEach((btn) =>
+	btn.addEventListener("click", function (e) {
+		const playerSelection = e.target.textContent;
+		const game = playRound(playerSelection, computerChoice());
+		if (game) {
+			return (results.textContent = "Winner!");
+		} else if (game === null) results.textContent = "Tie!";
+		else results.textContent = "Loser!";
+	})
+);
+
 //Outside variables to allow keping score
-let compScore = 0;
-let userScore = 0;
+let comp = 0;
+let user = 0;
 
 //playRound out of 5
 // const game = function () {
@@ -46,7 +50,7 @@ let userScore = 0;
 // 		//Variables to be iterated each time
 // 		let compChoice = computerChoice();
 // 		let userChoice = prompt(
-// 			"Please enter rock, paper, or scissors please"
+// 			"Please enter 🪨, paper, or scissors please"
 // 		).toLowerCase();
 // 		//Refactor
 // 		let play = playRound(compChoice, userChoice);
