@@ -1,5 +1,19 @@
 "use strict";
 
+//DOM constants
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+const buttons = document.querySelectorAll(".button");
+
+//Event Listeners for Buttons
+
+buttons.forEach((btn) =>
+	btn.addEventListener("click", function (e) {
+		console.log(e.target.textContent);
+	})
+);
+
 //Create Computer Choice
 const computerChoice = function () {
 	const random = Math.floor(Math.random() * 3);
@@ -26,43 +40,43 @@ const playRound = function (compScore, userScore) {
 let compScore = 0;
 let userScore = 0;
 
-//playRound out of
-const game = function () {
-	for (let i = 0; i < 5; i++) {
-		//Variables to be iterated each time
-		let compChoice = computerChoice();
-		let userChoice = prompt(
-			"Please enter rock, paper, or scissors please"
-		).toLowerCase();
-		//Refactor
-		let play = playRound(compChoice, userChoice);
+//playRound out of 5
+// const game = function () {
+// 	for (let i = 0; i < 5; i++) {
+// 		//Variables to be iterated each time
+// 		let compChoice = computerChoice();
+// 		let userChoice = prompt(
+// 			"Please enter rock, paper, or scissors please"
+// 		).toLowerCase();
+// 		//Refactor
+// 		let play = playRound(compChoice, userChoice);
 
-		//Check result of round and tally up
-		if (play === 0) {
-			compScore++;
-			console.log(`You lost! Comp has ${compScore} points`);
-		} else if (play === 1) {
-			userScore++;
-			console.log(`You won! User has ${userScore} points`);
-		} else console.log(`Tie!`);
+// 		//Check result of round and tally up
+// 		if (play === 0) {
+// 			compScore++;
+// 			console.log(`You lost! Comp has ${compScore} points`);
+// 		} else if (play === 1) {
+// 			userScore++;
+// 			console.log(`You won! User has ${userScore} points`);
+// 		} else console.log(`Tie!`);
 
-		//Results Comparison
-		if (i === 4) {
-			if (compScore > userScore) {
-				console.log(`You Lost! 
-Comp: ${compScore}
-You: ${userScore}`);
-			} else if (userScore > compScore) {
-				console.log(`You are Goated in the Sauce!
-Comp: ${compScore}
-You: ${userScore}`);
-			} else {
-				console.log(`It's a tie!
-Comp: ${compScore}
-You: ${userScore}`);
-			}
-		}
-	}
-};
+// 		//Results Comparison
+// 		if (i === 4) {
+// 			if (compScore > userScore) {
+// 				console.log(`You Lost!
+// Comp: ${compScore}
+// You: ${userScore}`);
+// 			} else if (userScore > compScore) {
+// 				console.log(`You are Goated in the Sauce!
+// Comp: ${compScore}
+// You: ${userScore}`);
+// 			} else {
+// 				console.log(`It's a tie!
+// Comp: ${compScore}
+// You: ${userScore}`);
+// 			}
+// 		}
+// 	}
+// };
 
-game();
+// game();
