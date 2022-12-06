@@ -6,11 +6,14 @@ const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
 const buttons = document.querySelectorAll(".button");
 const results = document.querySelector(".results");
+const subheader = document.querySelector(".subheader");
+const playerScore = document.querySelector(".playerScore");
+const compScore = document.querySelector(".compScore");
 
 //Create Computer Choice
-const computerChoice = function () {
+const compSelection = function () {
 	const random = Math.floor(Math.random() * 3);
-	console.log(random);
+
 	if (random === 0) return "🪨";
 	else if (random === 1) return "📃";
 	else return "✂️";
@@ -28,21 +31,39 @@ const playRound = function (user, comp) {
 	else false;
 };
 
+let comp = 0;
+let user = 0;
+let i = 0;
+
 //Event Listeners for Buttons
 buttons.forEach((btn) =>
 	btn.addEventListener("click", function (e) {
 		const playerSelection = e.target.textContent;
-		const game = playRound(playerSelection, computerChoice());
-		if (game) {
-			return (results.textContent = "Winner!");
-		} else if (game === null) results.textContent = "Tie!";
-		else results.textContent = "Loser!";
+		const game = playRound(playerSelection, compSelection());
+		i++;
+		console.log(`Round ${i}`);
+
+		if (i === 5) {
+			if (user > comp) subheader.textContent = `You won the game!`;
+			if (comp > user) subheader.textContent = `You lost the game!`;
+			else subheader.textContent = "Tie...";
+		} else if (game) {
+			user++;
+			console.log(`User ${user}`);
+			subheader.textContent = `Winner!`;
+			playerScore.textContent = `${user}`;
+		} else if (game === null) {
+			subheader.textContent = "Tie!";
+		} else {
+			comp++;
+			console.log(comp);
+			subheader.textContent = "Loser!";
+			compScore.textContent = `${comp}`;
+		}
 	})
 );
 
 //Outside variables to allow keping score
-let comp = 0;
-let user = 0;
 
 //playRound out of 5
 // const game = function () {
