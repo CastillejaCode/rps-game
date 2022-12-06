@@ -12,6 +12,7 @@ const compScore = document.querySelector(".compScore");
 const round = document.querySelector(".round");
 const btnRestart = document.querySelector(".restart-modal");
 const modalWindow = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
 
 //Create Computer Choice
 const compSelection = function () {
@@ -38,6 +39,7 @@ let comp = 0;
 let user = 0;
 let i = 0;
 let roundLimit = 5;
+
 //Event Listeners for Buttons
 buttons.forEach((btn) =>
 	btn.addEventListener("click", function (e) {
@@ -49,9 +51,10 @@ buttons.forEach((btn) =>
 		if (i === roundLimit) {
 			if (user > comp) results.textContent = `You won the game!`;
 			if (comp > user) results.textContent = `You lost the game!`;
-			else results.textContent = "Tie...";
+			else results.textContent = "Tied game";
 
 			modalWindow.classList.remove("hidden");
+			overlay.classList.remove("hidden");
 		} else if (game) {
 			user++;
 			subheader.textContent = `Winner!`;
@@ -68,6 +71,7 @@ buttons.forEach((btn) =>
 
 btnRestart.addEventListener("click", function (e) {
 	modalWindow.classList.add("hidden");
+	overlay.classList.add("hidden");
 	compScore.textContent = comp = 0;
 	playerScore.textContent = user = 0;
 	round.textContent = i = 0;

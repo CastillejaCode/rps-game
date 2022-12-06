@@ -11,6 +11,20 @@
     height: 100%;
 }
 
+
+.header {
+    font-size: 50px;
+    margin-top: 2rem;
+}
+
+.subheader {
+    display: block;
+    font-size: 36px;
+    padding-top: 1rem;
+    min-height: 3rem;
+}
+
+
 .round {
     display: flex;
     justify-content: center;
@@ -44,6 +58,10 @@
     left:0;
     width: 100%;
     height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(3px);
+ 
+    
     }
 
 .hidden {
@@ -79,18 +97,6 @@
 .header, .subheader, .results{
     height: auto;
     text-align: center;
-}
-
-.header {
-    font-size: 50px;
-    margin-top: 2rem;
-    border: solid;
-}
-
-.subheader {
-    font-size: 36px;
-    margin-top: 2rem;
-    transition: .4s;
 }
 
 .results {
