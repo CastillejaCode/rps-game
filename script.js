@@ -9,6 +9,8 @@ const results = document.querySelector(".results");
 const subheader = document.querySelector(".subheader");
 const playerScore = document.querySelector(".playerScore");
 const compScore = document.querySelector(".compScore");
+const round = document.querySelector(".round");
+const btn = document.querySelector(".restart-modal");
 
 //Create Computer Choice
 const compSelection = function () {
@@ -41,22 +43,22 @@ buttons.forEach((btn) =>
 		const playerSelection = e.target.textContent;
 		const game = playRound(playerSelection, compSelection());
 		i++;
-		console.log(`Round ${i}`);
+		round.textContent = i;
 
 		if (i === 5) {
 			if (user > comp) subheader.textContent = `You won the game!`;
 			if (comp > user) subheader.textContent = `You lost the game!`;
 			else subheader.textContent = "Tie...";
+
+			btn.classList.remove("hidden");
 		} else if (game) {
 			user++;
-			console.log(`User ${user}`);
 			subheader.textContent = `Winner!`;
 			playerScore.textContent = `${user}`;
 		} else if (game === null) {
 			subheader.textContent = "Tie!";
 		} else {
 			comp++;
-			console.log(comp);
 			subheader.textContent = "Loser!";
 			compScore.textContent = `${comp}`;
 		}
