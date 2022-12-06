@@ -49,12 +49,18 @@ buttons.forEach((btn) =>
 		round.textContent = i;
 
 		if (i === roundLimit) {
-			if (user > comp) results.textContent = `You won the game!`;
-			if (comp > user) results.textContent = `You lost the game!`;
-			else results.textContent = "Tied game";
+			if (user > comp) {
+				user++;
+				playerScore.textContent = `${user}`;
+				results.textContent = `You won the game!`;
+			} else if (comp > user) {
+				comp++;
+				compScore.textContent = `${comp}`;
+				results.textContent = `You lost the game!`;
+			} else results.textContent = "Tied game!";
 
-			modalWindow.classList.remove("hidden");
-			overlay.classList.remove("hidden");
+			modalWindow.classList.toggle("hidden");
+			overlay.classList.toggle("hidden");
 		} else if (game) {
 			user++;
 			subheader.textContent = `Winner!`;
@@ -75,6 +81,7 @@ btnRestart.addEventListener("click", function (e) {
 	compScore.textContent = comp = 0;
 	playerScore.textContent = user = 0;
 	round.textContent = i = 0;
+	subheader.textContent = "";
 });
 //Outside variables to allow keping score
 
