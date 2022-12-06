@@ -10,7 +10,8 @@ const subheader = document.querySelector(".subheader");
 const playerScore = document.querySelector(".playerScore");
 const compScore = document.querySelector(".compScore");
 const round = document.querySelector(".round");
-const btn = document.querySelector(".restart-modal");
+const btnRestart = document.querySelector(".restart-modal");
+const modalWindow = document.querySelector(".modal");
 
 //Create Computer Choice
 const compSelection = function () {
@@ -36,7 +37,7 @@ const playRound = function (user, comp) {
 let comp = 0;
 let user = 0;
 let i = 0;
-
+let roundLimit = 5;
 //Event Listeners for Buttons
 buttons.forEach((btn) =>
 	btn.addEventListener("click", function (e) {
@@ -45,12 +46,12 @@ buttons.forEach((btn) =>
 		i++;
 		round.textContent = i;
 
-		if (i === 5) {
-			if (user > comp) subheader.textContent = `You won the game!`;
-			if (comp > user) subheader.textContent = `You lost the game!`;
-			else subheader.textContent = "Tie...";
+		if (i === roundLimit) {
+			if (user > comp) results.textContent = `You won the game!`;
+			if (comp > user) results.textContent = `You lost the game!`;
+			else results.textContent = "Tie...";
 
-			btn.classList.remove("hidden");
+			modalWindow.classList.remove("hidden");
 		} else if (game) {
 			user++;
 			subheader.textContent = `Winner!`;
@@ -65,6 +66,12 @@ buttons.forEach((btn) =>
 	})
 );
 
+btnRestart.addEventListener("click", function (e) {
+	modalWindow.classList.add("hidden");
+	compScore.textContent = comp = 0;
+	playerScore.textContent = user = 0;
+	round.textContent = i = 0;
+});
 //Outside variables to allow keping score
 
 //playRound out of 5

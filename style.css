@@ -36,7 +36,6 @@
     padding: 6rem;
     border-radius: 10px;
     box-shadow: 0 3rem 5rem black;
-    z-index: auto;
 }
 
 .overlay {
@@ -50,6 +49,7 @@
 .hidden {
     display: none;
 }
+
 .scores {
     display: flex;
     justify-content: space-around;
