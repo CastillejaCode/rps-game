@@ -47,6 +47,7 @@ buttons.forEach((btn) =>
 		const game = playRound(playerSelection, compSelection());
 		i++;
 		round.textContent = i;
+		const audio = new Audio("Audio/fart-with-reverb-39675.mp3");
 
 		if (i === roundLimit) {
 			if (user > comp) {
@@ -57,6 +58,7 @@ buttons.forEach((btn) =>
 				comp++;
 				compScore.textContent = `${comp}`;
 				results.textContent = `You lost the game!`;
+				audio.play();
 			} else results.textContent = "Tied game!";
 
 			modalWindow.classList.toggle("hidden");
